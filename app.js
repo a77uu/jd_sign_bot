@@ -34,11 +34,10 @@ async function sendNotify (text,desp,token) {
         uri: 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=' + token,
         form: {
             touser: "@all",
-            msgtype: "textcard",
+            msgtype: "text",
             agentid: 1000002,
-            "textcard" : {
-                "title" : text,
-                "description" : desp,
+            "text" : {
+                "content" : desp
             },
             title: text,
             description: desp,
