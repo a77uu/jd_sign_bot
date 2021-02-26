@@ -33,15 +33,13 @@ async function sendNotify (text,desp,token) {
     const option = {
         uri: 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=' + token,
         form: {
-            touser: "@all",
-            msgtype: "text",
-            agentid: 1000002,
+            "touser": "@all",
+            "msgtype": "text",
+            "agentid": 1000002,
             "text" : {
                 "content" : desp
             },
-            title: text,
-            description: desp,
-            url: "https://noxer.cn/"
+            "safe": 1
         },
         json: true,
         method: 'POST'
