@@ -38,8 +38,7 @@ async function sendNotify (text,desp,token) {
             agentid: 1000002,
             text : {
                 content : desp
-            },
-            "safe": 1 
+            }
         },
         json: true,
         method: 'POST'
