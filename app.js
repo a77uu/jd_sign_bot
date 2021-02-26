@@ -30,7 +30,7 @@ async function changeFile () {
 }
 
 async function sendNotify (text,desp,token) {
-    const params = {
+    const form = {
         "touser": "@all",
         "msgtype": "text",
         "agentid": 1000002,
@@ -41,9 +41,7 @@ async function sendNotify (text,desp,token) {
     }
     const option = {
         uri: 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=' + token,
-        form: {
-            JSON.stringify(params)
-        },
+        form,
         json: true,
         method: 'POST'
     }
