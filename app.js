@@ -9,7 +9,8 @@ const download = require('download');
 
 // 公共变量
 const KEY = process.env.JD_COOKIE;
-const serverJ = process.env.PUSH_KEY;
+const corpid = process.env.CORPID;
+const corpsecret = process.env.CORPSECRET;
 const DualKey = process.env.JD_COOKIE_2;
 
 
@@ -28,21 +29,25 @@ async function changeFile () {
    await fs.writeFileSync( './JD_DailyBonus.js', content, 'utf8')
 }
 
-async function sendNotify (text,desp) {
-  const options ={
-    uri:  `https://sc.ftqq.com/${serverJ}.send`,
-    form: { text, desp },
-    json: true,
-    method: 'POST'
-  }
-  await rp.post(options).then(res=>{
-    console.log(res)
-  }).catch((err)=>{
-    console.log(err)
-  })
+async function fetchToken () {
+    const options = {
+        uri : `https://qyapi.weixin.qq.com/cgi-bin/gettoken`,
+        qs: {
+            corpid,corpsecret
+        },
+        method: 'GET'
+    }
+    await rp.get(options).then(res => {
+        var token = JSON.parse(res).access_token
+        await start(token);
+    })
 }
 
-async function start() {
+async function sendNotify (text,desp,token) {
+    console.log(token)
+}
+
+async function start(token) {
   if (!KEY) {
     console.log('请填写 key 后在继续')
     return
@@ -69,8 +74,6 @@ async function start() {
     let res2 = t2 ? t2[1].replace(/\n/,'') : '总计0'
 
     
-    await sendNotify("" + ` ${res2} ` + ` ${res} ` + new Date().toLocaleDateString(), content);
+    await sendNotify("" + ` ${res2} ` + ` ${res} ` + new Date().toLocaleDateString(), content, token);
   }
 }
-
-start()
