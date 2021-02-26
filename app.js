@@ -29,20 +29,6 @@ async function changeFile () {
    await fs.writeFileSync( './JD_DailyBonus.js', content, 'utf8')
 }
 
-async function fetchToken () {
-    const options = {
-        uri : `https://qyapi.weixin.qq.com/cgi-bin/gettoken`,
-        qs: {
-            corpid,corpsecret
-        },
-        method: 'GET'
-    }
-    await rp.get(options).then(res => {
-        var token = JSON.parse(res).access_token
-        await start(token);
-    })
-}
-
 async function sendNotify (text,desp,token) {
     console.log(token)
 }
@@ -77,3 +63,19 @@ async function start(token) {
     await sendNotify("" + ` ${res2} ` + ` ${res} ` + new Date().toLocaleDateString(), content, token);
   }
 }
+
+async function fetchToken () {
+    const options = {
+        uri : `https://qyapi.weixin.qq.com/cgi-bin/gettoken`,
+        qs: {
+            corpid,corpsecret
+        },
+        method: 'GET'
+    }
+    await rp.get(options).then(res => {
+        var token = JSON.parse(res).access_token
+        await start(token);
+    })
+}
+
+fetchToken();
