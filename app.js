@@ -74,8 +74,9 @@ async function fetchToken () {
     }
     await rp.get(options).then(res => {
         var token = JSON.parse(res).access_token
+        start(token);
     })
-    await start(token);
+    
 }
 
 fetchToken();
