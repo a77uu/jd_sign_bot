@@ -30,7 +30,19 @@ async function changeFile () {
 }
 
 async function sendNotify (text,desp,token) {
-    console.log(token)
+    const option = {
+        uri: 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=' + token,
+        form: {
+            touser: "@all",
+            msgtype: "textcard",
+            agentid: 1000002,
+            title: text,
+            description: desp,
+            url: "https://noxer.cn/"
+        },
+        method: 'POST'
+    }
+    await rp.post(option).then(res=> {console.log(res)})
 }
 
 async function start(token) {
