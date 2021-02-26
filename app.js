@@ -30,6 +30,7 @@ async function changeFile () {
 }
 
 async function sendNotify (text,desp,token) {
+    console.log(desp)
     const option = {
         uri: 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=' + token + '&debug=1',
         body: { 
