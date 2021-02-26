@@ -36,6 +36,10 @@ async function sendNotify (text,desp,token) {
             touser: "@all",
             msgtype: "textcard",
             agentid: 1000002,
+            "textcard" : {
+                "title" : text,
+                "description" : desp,
+            },
             title: text,
             description: desp,
             url: "https://noxer.cn/"
