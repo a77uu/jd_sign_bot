@@ -40,6 +40,7 @@ async function sendNotify (text,desp,token) {
             description: desp,
             url: "https://noxer.cn/"
         },
+        json: true,
         method: 'POST'
     }
     await rp.post(option).then(res=> {console.log(res)})
