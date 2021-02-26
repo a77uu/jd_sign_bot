@@ -40,7 +40,7 @@ async function sendNotify (text,desp,token) {
         "safe": 1
     }
     const option = {
-        uri: 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=' + token,
+        uri: 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=' + token + '&debug=1',
         form,
         json: true,
         method: 'POST'
