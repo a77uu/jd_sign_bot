@@ -26,4 +26,6 @@ jobs:
               env:
                 JD_COOKIE: ${{ secrets.JD_COOKIE }}
                 JD_COOKIE_2: ${{ secrets.JD_COOKIE_2 }} 
+                CORPID: ${{ secrets.CORPID }}
+                CORPSECRET: ${{ secrets.CORPSECRET }}
                 PUSH_KEY: ${{ secrets.PUSH_KEY }}
